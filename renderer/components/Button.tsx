@@ -17,11 +17,17 @@ export default function Button({ text, color, onClick, className }: Props) {
                 className={`text-3xl whitespace-nowrap rounded-2xl px-20 py-4 duration-200 active:scale-95 ${
                     color
                         ? colorVariants[color]
-                        : "bg-transparent text-black shadow-lg"
+                        : "bg-transparent text-[var(--color-black)] shadow-lg"
                 } ${className || ""}`}
                 onClick={onClick}
             >
-                <span className={color ? "text-white" : "text-black"}>
+                <span
+                    className={
+                        color
+                            ? "text-[var(--color-white)]"
+                            : "text-[var(--color-black)]"
+                    }
+                >
                     {text}
                 </span>
             </button>

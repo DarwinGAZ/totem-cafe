@@ -3,23 +3,44 @@
 @theme {
     --color-ink: #17130f;
     --color-ink-raised: #211b15;
-    --color-surface: #251f18;
-    --color-surface-hi: #302921;
-    --color-line: rgba(243, 236, 220, 0.1);
-    --color-line-strong: rgba(243, 236, 220, 0.2);
-
+    --color-text-muted: #7a7263;
+    --color-border: #e8dcc4;
+    --color-border-rgb: 232 220 196;
     --color-paper: #f3ecdc;
+    --color-paper-rgb: 243 236 220;
     --color-paper-dim: #b9ae99;
     --color-paper-faint: #7a7263;
+
+    --color-background: #fdfbf7;
+    --color-surface-soft: #fdf8f5;
+    --color-surface-alt: #eae0d5;
+    --color-surface-glow: #f5ebe1;
+    --color-surface-warm: #e8dcc4;
+    --color-surface-white: #ffffff;
+    --color-white: #ffffff;
+    --color-white-rgb: 255 255 255;
+    --color-black: #000000;
+    --color-black-rgb: 0 0 0;
+
+    --color-brand: #4a3b32;
+    --color-brown: #5c4033;
 
     --color-accent: #d9a441;
     --color-accent-deep: #b87f22;
     --color-accent-ink: #241a08;
+    --color-accent-rgb: 217 164 65;
 
     --color-signal: #4fbf9f;
     --color-signal-deep: #339179;
+    --color-signal-rgb: 79 191 159;
 
     --color-danger: #d97757;
+
+    --color-shadow-light: rgba(0, 0, 0, 0.03);
+    --color-shadow-outline: rgba(0, 0, 0, 0.04);
+    --color-shadow-medium: rgba(0, 0, 0, 0.06);
+    --color-shadow-strong: rgba(0, 0, 0, 0.08);
+    --color-shadow-brand: rgba(92, 64, 51, 0.1);
 
     --font-display: var(--font-montserrat), Georgia, "Times New Roman", serif;
     --font-ui: var(--font-poppins), -apple-system, Roboto, sans-serif;
@@ -49,10 +70,10 @@
 @keyframes pulse-ring {
     0%,
     100% {
-        box-shadow: 0 0 0 0 rgba(217, 164, 65, 0.35);
+        box-shadow: 0 0 0 0 rgba(var(--color-accent-rgb), 0.35);
     }
     50% {
-        box-shadow: 0 0 0 16px rgba(217, 164, 65, 0);
+        box-shadow: 0 0 0 16px rgba(var(--color-accent-rgb), 0);
     }
 }
 
