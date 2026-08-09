@@ -2,14 +2,24 @@ import { useState } from "react";
 import Link from "next/link";
 import { useCart } from "@/stores/cart";
 import { useTotalPrice } from "@/utils/totalPrice";
+import { orderService } from "@/services/orders.service";
 
 export default function Pagamento() {
     const [metodoSelecionado, setMetodoSelecionado] = useState<
-        "pix" | "credito" | "debito" | null
+        "pix" | "credito" | "debito" | "dinheiro" | null
     >(null);
 
     const totalPrice = useTotalPrice();
     const cartItems = useCart((state) => state.cartItems);
+
+    const handleCreateOrder = async () => {
+        const result = await orderService.createOrder({
+            items: cartItems.map((item) => ({
+                productId: item.product.id,
+                quantity: item.quantity,
+            })),
+        });
+    };
 
     return (
         <main className="min-h-screen bg-[var(--color-background)] flex flex-col items-center pt-12 pb-0 font-sans selection:bg-transparent relative overflow-hidden">
@@ -91,7 +101,7 @@ export default function Pagamento() {
                             </h3>
 
                             <button
-                                onClick={() => setMetodoSelecionado("pix")}
+                                onClick={handleCreateOrder}
                                 className="group flex items-center justify-between p-8 rounded-[2rem] border-2 border-[var(--color-paper)] hover:border-[var(--color-signal)] hover:bg-[rgba(var(--color-signal-rgb),0.05)] transition-all duration-300 active:scale-95"
                             >
                                 <div className="flex items-center gap-6">
@@ -114,7 +124,7 @@ export default function Pagamento() {
                             </button>
 
                             <button
-                                onClick={() => setMetodoSelecionado("debito")}
+                                onClick={handleCreateOrder}
                                 className="group flex items-center justify-between p-8 rounded-[2rem] border-2 border-[var(--color-paper)] hover:border-[var(--color-accent)] hover:bg-[rgba(var(--color-accent-rgb),0.05)] transition-all duration-300 active:scale-95"
                             >
                                 <div className="flex items-center gap-6">
@@ -149,7 +159,7 @@ export default function Pagamento() {
                             </button>
 
                             <button
-                                onClick={() => setMetodoSelecionado("credito")}
+                                onClick={handleCreateOrder}
                                 className="group flex items-center justify-between p-8 rounded-[2rem] border-2 border-[var(--color-paper)] hover:border-[var(--color-accent)] hover:bg-[rgba(var(--color-accent-rgb),0.05)] transition-all duration-300 active:scale-95"
                             >
                                 <div className="flex items-center gap-6">
