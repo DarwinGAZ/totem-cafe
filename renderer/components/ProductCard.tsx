@@ -33,7 +33,7 @@ export default function ProductCard({ product, onAdd, onClickCard }: Props) {
 
                 {product.image ? (
                     <img
-                        src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${product.image}`}
+                        src={`${process.env.NEXT_PUBLIC_API_URL}${product.image}`}
                         alt={product.name}
                         className={`w-full h-full object-cover transition-transform duration-700 ${
                             product.available

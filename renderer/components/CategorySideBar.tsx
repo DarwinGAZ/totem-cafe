@@ -46,7 +46,7 @@ export default function CategorySidebar({
                                 <CategoryCard
                                     img={
                                         cat.image
-                                            ? `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"}${cat.image}`
+                                            ? `${process.env.NEXT_PUBLIC_API_URL}${cat.image}`
                                             : "/images/cafe-logo.png"
                                     }
                                     category={cat.name}

@@ -83,7 +83,7 @@ export default function Cart() {
                         >
                             <div className="w-32 h-32 bg-gradient-to-tr from-[rgba(var(--color-paper-rgb),0.5)] to-[var(--color-white)] rounded-3xl flex items-center justify-center text-6xl shadow-inner border border-[rgba(var(--color-white-rgb),0.6)]">
                                 <img
-                                    src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${item.product.image}`}
+                                    src={`${process.env.NEXT_PUBLIC_API_URL}${item.product.image}`}
                                     alt={item.product.name}
                                     className="h-full w-full object-cover rounded-3xl"
                                 />
