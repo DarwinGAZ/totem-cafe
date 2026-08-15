@@ -34,7 +34,10 @@ export default function Menu() {
     useEffect(() => {
         async function fetchCategories() {
             try {
-                const categoriesRes = await categoryService.getAllCategories();
+                const categoriesRes =
+                    (await categoryService.getAllCategories()) as {
+                        data: Category[];
+                    };
                 const data = (categoriesRes.data as Category[]) || [];
                 setCategories(data);
                 setActiveCategory(data[0]?.id);
@@ -52,8 +55,9 @@ export default function Menu() {
     useEffect(() => {
         async function fetchProductsByCategory(categoryId: string) {
             try {
-                const productsRes =
-                    await productService.getProductsByCategory(categoryId);
+                const productsRes = (await productService.getProductsByCategory(
+                    categoryId,
+                )) as { data: Product[] };
                 const data = (productsRes.data as Product[]) || [];
                 setProducts(data);
             } catch (err) {
