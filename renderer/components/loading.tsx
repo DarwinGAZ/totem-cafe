@@ -1,5 +1,9 @@
 export default function Loading() {
     return (
-        <div className="w-15 h-15 border-5 border-r-blue-500 border-t-blue-500 rounded-full animate-spin"></div>
+        <div
+            role="status"
+            aria-label="Carregando"
+            className="h-12 w-12 rounded-full border-4 border-[var(--color-border)] border-r-[var(--color-accent)] border-t-[var(--color-accent)] animate-spin"
+        />
     );
 }

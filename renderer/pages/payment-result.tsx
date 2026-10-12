@@ -15,12 +15,12 @@ export default function PaymentResultPage() {
     const approved = rawStatus === "approved";
 
     return (
-        <main className="min-h-screen bg-[var(--color-background)] flex flex-col items-center pt-12 pb-0 font-sans selection:bg-transparent relative overflow-hidden">
+        <main className="paper-texture min-h-screen bg-[var(--color-background)] flex flex-col items-center pt-12 pb-0 font-ui selection:bg-transparent relative overflow-hidden">
             <div className="absolute top-0 w-full h-[40vh] bg-gradient-to-b from-[rgba(var(--color-paper-rgb),0.5)] to-transparent pointer-events-none"></div>
 
             <header className="w-full max-w-6xl px-8 flex justify-between items-center mb-12 z-10">
                 <div className="flex flex-col">
-                    <h1 className="text-5xl font-black tracking-tight text-[var(--color-ink)]">
+                    <h1 className="text-5xl font-semibold tracking-tight text-[var(--color-ink)]">
                         {approved ? "Pedido Aprovado" : "Pedido Recusado"}
                     </h1>
                     <p className="text-2xl text-[var(--color-text-muted)] mt-2 font-medium">

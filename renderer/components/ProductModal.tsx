@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { Product } from "@/types/product";
+import { getImageUrl } from "@/utils/imageUrl";
 
 type Props = {
     product: Product | null;
@@ -13,27 +15,32 @@ export default function ProductModal({
     onClose,
     onAddToCart,
 }: Props) {
+    const [failedImage, setFailedImage] = useState<string | null>(null);
+
     if (!isOpen || !product) return null;
+
+    const imageUrl = getImageUrl(product.image);
 
     return (
         // Fundo escuro com desfoque (Overlay)
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-8">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(var(--color-black-rgb),0.68)] backdrop-blur-sm p-8">
             {/* Caixa do Modal */}
-            <div className="bg-[var(--color-white)] w-full max-w-5xl rounded-[3rem] p-8 shadow-2xl flex flex-row gap-10 relative transform transition-all animate-slide-up">
+            <div className="bg-[var(--color-surface-white)] w-full max-w-5xl rounded-[2.5rem] p-8 shadow-2xl flex flex-row gap-10 relative transform transition-all animate-slide-up border border-[var(--color-border)]">
                 {/* Botão de Fechar Gigante */}
                 <button
                     onClick={onClose}
-                    className="absolute top-6 right-6 w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center text-3xl font-bold text-gray-500 shadow-sm active:scale-90 transition-all z-10"
+                    className="absolute top-6 right-6 w-14 h-14 bg-[var(--color-paper)] rounded-full flex items-center justify-center text-2xl font-medium text-[var(--color-ink)] shadow-sm active:scale-90 transition-all z-10"
                 >
                     ✕
                 </button>
 
                 {/* Lado Esquerdo: Imagem */}
-                <div className="w-1/2 aspect-square bg-gradient-to-tr from-[rgba(var(--color-paper-rgb),0.6)] to-[var(--color-white)] rounded-[2rem] flex items-center justify-center overflow-hidden">
-                    {product.image ? (
+                <div className="w-1/2 aspect-square bg-[var(--color-paper)] rounded-[2rem] flex items-center justify-center overflow-hidden">
+                    {imageUrl && failedImage !== imageUrl ? (
                         <img
-                            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${product.image}`}
+                            src={imageUrl}
                             alt={product.name}
+                            onError={() => setFailedImage(imageUrl)}
                             className="w-full h-full object-cover"
                         />
                     ) : (
@@ -66,7 +73,7 @@ export default function ProductModal({
                                 onAddToCart(product);
                                 onClose();
                             }}
-                            className="w-full bg-[var(--color-accent)] text-white text-4xl font-bold py-8 rounded-[2rem] shadow-xl active:scale-95 transition-all duration-300"
+                            className="w-full bg-[var(--color-action)] text-[var(--color-action-ink)] text-3xl font-semibold py-7 rounded-[2rem] shadow-lg hover:bg-[var(--color-action-deep)] active:scale-95 transition-all duration-300"
                         >
                             Adicionar ao Carrinho
                         </button>

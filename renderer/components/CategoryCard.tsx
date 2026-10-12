@@ -5,13 +5,15 @@ type Props = {
 
 export default function CategoryCard({ img, category }: Props) {
     return (
-        <div className="border-1 border- text-center w-fit rounded-2xl shadow-lg flex-col justify-center items-center transition-transform hover:scale-110 duration-300">
+        <div className="w-fit rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-white)] text-center shadow-[0_4px_14px_var(--color-shadow-light)] transition-transform duration-300 hover:scale-[1.02]">
             <img
                 src={img}
                 alt={category}
-                className="w-50 h-auto rounded-t-2xl"
+                className="h-28 w-40 rounded-t-2xl object-cover"
             ></img>
-            <h1 className="text-3xl pb-3">{category}</h1>
+            <h3 className="px-2 py-3 text-lg font-semibold tracking-wide text-[var(--color-ink-raised)]">
+                {category}
+            </h3>
         </div>
     );
 }

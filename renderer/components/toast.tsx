@@ -20,13 +20,13 @@ export default function Toast({ message, onClose }: Props) {
 
     return (
         <div
-            className={`fixed top-10 left-1/2 transform -translate-x-1/2 bg-[var(--color-ink)] px-8 py-4 rounded-[2rem] shadow-2xl text-white font-bold text-2xl transition-all duration-300 z-[100] flex items-center gap-3 ${
+            className={`fixed top-10 left-1/2 transform -translate-x-1/2 bg-[var(--color-ink)] px-8 py-4 rounded-[2rem] shadow-2xl text-[var(--color-white)] font-semibold text-xl transition-all duration-300 z-[100] flex items-center gap-3 ${
                 isVisible
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 -translate-y-4"
             }`}
         >
-            <span className="bg-green-500 rounded-full w-8 h-8 flex items-center justify-center text-xl">
+            <span className="bg-[var(--color-signal-deep)] text-[var(--color-white)] rounded-full w-8 h-8 flex items-center justify-center text-lg">
                 ✓
             </span>
             {message}

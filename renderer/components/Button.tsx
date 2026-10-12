@@ -6,30 +6,22 @@ type Props = {
 };
 
 const colorVariants = {
-    green: "bg-green-500 ",
-    red: "bg-red-500 ",
+    green: "bg-[var(--color-action)] text-[var(--color-action-ink)] shadow-md hover:bg-[var(--color-action-deep)]",
+    red: "bg-[var(--color-danger)] text-[var(--color-white)]",
 };
 
 export default function Button({ text, color, onClick, className }: Props) {
     return (
         <div>
             <button
-                className={`text-3xl whitespace-nowrap rounded-2xl px-20 py-4 duration-200 active:scale-95 ${
+                className={`text-2xl font-semibold whitespace-nowrap rounded-2xl px-12 py-4 duration-200 active:scale-95 focus-visible:outline-offset-4 ${
                     color
                         ? colorVariants[color]
-                        : "bg-transparent text-[var(--color-black)] shadow-lg"
+                        : "border border-[var(--color-border)] bg-[var(--color-surface-white)] text-[var(--color-ink)] shadow-sm hover:bg-[var(--color-paper)]"
                 } ${className || ""}`}
                 onClick={onClick}
             >
-                <span
-                    className={
-                        color
-                            ? "text-[var(--color-white)]"
-                            : "text-[var(--color-black)]"
-                    }
-                >
-                    {text}
-                </span>
+                {text}
             </button>
         </div>
     );

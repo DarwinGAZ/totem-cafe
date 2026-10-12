@@ -1,50 +1,58 @@
 @import "tailwindcss";
 
 @theme {
-    --color-ink: #17130f;
-    --color-ink-raised: #211b15;
-    --color-text-muted: #7a7263;
-    --color-border: #e8dcc4;
-    --color-border-rgb: 232 220 196;
-    --color-paper: #f3ecdc;
-    --color-paper-rgb: 243 236 220;
-    --color-paper-dim: #b9ae99;
-    --color-paper-faint: #7a7263;
+    --color-ink: #211912;
+    --color-ink-raised: #302319;
+    --color-text-muted: #746657;
+    --color-border: #dfd2bc;
+    --color-border-rgb: 223 210 188;
+    --color-paper: #f2ead8;
+    --color-paper-rgb: 242 234 216;
+    --color-paper-dim: #746657;
+    --color-paper-faint: #746657;
 
-    --color-background: #fdfbf7;
-    --color-surface-soft: #fdf8f5;
-    --color-surface-alt: #eae0d5;
-    --color-surface-glow: #f5ebe1;
-    --color-surface-warm: #e8dcc4;
-    --color-surface-white: #ffffff;
-    --color-white: #ffffff;
-    --color-white-rgb: 255 255 255;
-    --color-black: #000000;
-    --color-black-rgb: 0 0 0;
+    --color-background: #f6f0e2;
+    --color-surface-soft: #f6f0e2;
+    --color-surface-alt: #e9deca;
+    --color-surface-glow: #eee3cf;
+    --color-surface-warm: #dfd0b7;
+    --color-surface-white: #fbf7ed;
+    --color-white: #fbf7ed;
+    --color-white-rgb: 251 247 237;
+    --color-black: #211912;
+    --color-black-rgb: 33 25 18;
 
-    --color-brand: #4a3b32;
-    --color-brown: #5c4033;
+    --color-brand: #302319;
+    --color-brown: #503a2b;
 
-    --color-accent: #d9a441;
-    --color-accent-deep: #b87f22;
-    --color-accent-ink: #241a08;
-    --color-accent-rgb: 217 164 65;
+    --color-accent: #503a2b;
+    --color-accent-deep: #38271d;
+    --color-accent-ink: #fbf7ed;
+    --color-accent-rgb: 80 58 43;
 
-    --color-signal: #4fbf9f;
-    --color-signal-deep: #339179;
-    --color-signal-rgb: 79 191 159;
+    --color-action: #168a45;
+    --color-action-deep: #106b35;
+    --color-action-ink: #fbf7ed;
 
-    --color-danger: #d97757;
-    --color-danger-rgb: 217 119 87;
+    --color-highlight: #bd714d;
+    --color-highlight-deep: #995537;
+    --color-highlight-rgb: 189 113 77;
+
+    --color-signal: #9a8866;
+    --color-signal-deep: #685638;
+    --color-signal-rgb: 154 136 102;
+
+    --color-danger: #c62828;
+    --color-danger-rgb: 198 40 40;
 
     --color-shadow-light: rgba(0, 0, 0, 0.03);
     --color-shadow-outline: rgba(0, 0, 0, 0.04);
     --color-shadow-medium: rgba(0, 0, 0, 0.06);
     --color-shadow-strong: rgba(0, 0, 0, 0.08);
-    --color-shadow-brand: rgba(92, 64, 51, 0.1);
+    --color-shadow-brand: rgba(62, 43, 29, 0.12);
 
-    --font-display: var(--font-montserrat), Georgia, "Times New Roman", serif;
-    --font-ui: var(--font-poppins), -apple-system, Roboto, sans-serif;
+    --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
+    --font-ui: var(--font-dm-sans), -apple-system, Roboto, sans-serif;
 
     --animate-rise: rise 3.2s ease-in-out infinite;
     --animate-pulse-ring: pulse-ring 2.4s ease-in-out infinite;
@@ -121,15 +129,41 @@ body {
 
 body {
     font-family: var(--font-ui);
+    color: var(--color-ink);
+    background-color: var(--color-background);
+    background-image: radial-gradient(
+        rgba(80, 58, 43, 0.045) 0.55px,
+        transparent 0.55px
+    );
+    background-size: 5px 5px;
     -webkit-font-smoothing: antialiased;
     overscroll-behavior: none;
     margin: 0;
 }
 
+.paper-texture {
+    background-image: radial-gradient(
+        rgba(80, 58, 43, 0.045) 0.55px,
+        transparent 0.55px
+    );
+    background-size: 5px 5px;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-display);
+}
+
 button {
     font-family: inherit;
-    color: inherit;
     -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 4px;
 }
 
 ::selection {
@@ -137,7 +171,7 @@ button {
     color: var(--color-accent-ink);
 }
 
-/* @media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce) {
     *,
     *::before,
     *::after {
@@ -145,4 +179,4 @@ button {
         animation-iteration-count: 1 !important;
         transition-duration: 0.001ms !important;
     }
-} */
+}

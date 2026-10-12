@@ -1,23 +1,32 @@
 import type { AppProps } from "next/app";
-import { Poppins, Montserrat } from "next/font/google";
+import Head from "next/head";
+import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 
-const poppins = Poppins({
-    weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+const dmSans = DM_Sans({
+    weight: ["400", "500", "600", "700"],
     subsets: ["latin"],
-    variable: "--font-poppins",
+    variable: "--font-dm-sans",
 });
 
-const montserrat = Montserrat({
-    weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+const cormorant = Cormorant_Garamond({
+    weight: ["400", "500", "600", "700"],
+    style: ["normal", "italic"],
     subsets: ["latin"],
-    variable: "--font-montserrat",
+    variable: "--font-cormorant",
 });
 
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
-        <main className={`${poppins.variable} ${montserrat.variable} h-full`}>
+        <main className={`${dmSans.variable} ${cormorant.variable} h-full`}>
+            <Head>
+                <title>Bistrô 57 | Café e comida afetiva</title>
+                <meta
+                    name="description"
+                    content="Bistrô 57 — café e comida afetiva."
+                />
+            </Head>
             <Component {...pageProps} />
         </main>
     );
