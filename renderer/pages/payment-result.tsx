@@ -12,7 +12,14 @@ export default function PaymentResultPage() {
         ? router.query.status[0]
         : router.query.status;
 
+    // CAPTURA O CÓDIGO DA URL
+    const rawCode = Array.isArray(router.query.code)
+        ? router.query.code[0]
+        : router.query.code;
+
     const approved = rawStatus === "approved";
+
+    const displayCode = rawCode ? String(rawCode).padStart(3, "0") : "000";
 
     return (
         <main className="paper-texture min-h-screen bg-[var(--color-background)] flex flex-col items-center pt-12 pb-0 font-ui selection:bg-transparent relative overflow-hidden">
@@ -20,10 +27,22 @@ export default function PaymentResultPage() {
 
             <header className="w-full max-w-6xl px-8 flex justify-between items-center mb-12 z-10">
                 <div className="flex flex-col">
-                    <h1 className="text-5xl font-semibold tracking-tight text-[var(--color-ink)]">
+                    <h1
+                        className={`text-5xl font-semibold tracking-tight ${
+                            approved
+                                ? "text-[var(--color-action-deep)]"
+                                : "text-[var(--color-danger)]"
+                        }`}
+                    >
                         {approved ? "Pedido Aprovado" : "Pedido Recusado"}
                     </h1>
-                    <p className="text-2xl text-[var(--color-text-muted)] mt-2 font-medium">
+                    <p
+                        className={`text-2xl mt-2 font-medium ${
+                            approved
+                                ? "text-[var(--color-action)]"
+                                : "text-[var(--color-danger)]"
+                        }`}
+                    >
                         {approved
                             ? "Pagamento confirmado"
                             : "Não foi possível concluir"}
@@ -86,9 +105,9 @@ export default function PaymentResultPage() {
                     <div className="animate-fade-in flex flex-col items-center justify-center h-full text-center">
                         {approved ? (
                             <>
-                                <div className="w-36 h-36 bg-[rgba(var(--color-signal-rgb),0.12)] rounded-full flex items-center justify-center mb-8">
+                                <div className="w-36 h-36 bg-[rgba(var(--color-action-rgb),0.16)] rounded-full flex items-center justify-center mb-8">
                                     <svg
-                                        className="w-24 h-24 text-[var(--color-signal-deep)]"
+                                        className="w-24 h-24 text-[var(--color-action)]"
                                         fill="none"
                                         stroke="currentColor"
                                         viewBox="0 0 24 24"
@@ -102,27 +121,27 @@ export default function PaymentResultPage() {
                                     </svg>
                                 </div>
 
-                                <h2 className="text-5xl font-black text-[var(--color-ink)] mb-4">
+                                <h2 className="text-5xl font-black text-[var(--color-action-deep)] mb-4">
                                     Pedido confirmado
                                 </h2>
                                 <p className="text-2xl font-medium text-[var(--color-text-muted)] mb-8">
                                     Seu pedido foi aprovado e já está sendo
                                     preparado.
                                 </p>
-                                <div className="rounded-[2rem] border border-[rgba(var(--color-signal-rgb),0.4)] bg-[rgba(var(--color-signal-rgb),0.05)] px-8 py-6 w-full max-w-xl">
+                                <div className="rounded-[2rem] border border-[rgba(var(--color-action-rgb),0.45)] bg-[rgba(var(--color-action-rgb),0.09)] px-8 py-6 w-full max-w-xl">
                                     <div className="flex items-center justify-between">
                                         <span className="text-2xl font-bold text-[var(--color-ink)]">
                                             Nº do pedido
                                         </span>
-                                        <span className="text-3xl font-black text-[var(--color-signal-deep)]">
-                                            #A-2048
+                                        <span className="text-3xl font-black text-[var(--color-action-deep)]">
+                                            #{displayCode}{" "}
                                         </span>
                                     </div>
                                     <div className="flex items-center justify-between mt-5">
                                         <span className="text-2xl font-bold text-[var(--color-ink)]">
                                             Status
                                         </span>
-                                        <span className="text-3xl font-black text-[var(--color-signal-deep)]">
+                                        <span className="text-3xl font-black text-[var(--color-action-deep)]">
                                             Aprovado
                                         </span>
                                     </div>
@@ -130,7 +149,7 @@ export default function PaymentResultPage() {
                             </>
                         ) : (
                             <>
-                                <div className="w-36 h-36 bg-[rgba(var(--color-danger-rgb),0.12)] rounded-full flex items-center justify-center mb-8">
+                                <div className="w-36 h-36 bg-[rgba(var(--color-danger-rgb),0.16)] rounded-full flex items-center justify-center mb-8">
                                     <svg
                                         className="w-24 h-24 text-[var(--color-danger)]"
                                         fill="none"
@@ -146,14 +165,14 @@ export default function PaymentResultPage() {
                                     </svg>
                                 </div>
 
-                                <h2 className="text-5xl font-black text-[var(--color-ink)] mb-4">
+                                <h2 className="text-5xl font-black text-[var(--color-danger)] mb-4">
                                     Pedido recusado
                                 </h2>
                                 <p className="text-2xl font-medium text-[var(--color-text-muted)] mb-8">
                                     O pagamento não foi autorizado. Tente outra
                                     forma ou confira o cartão.
                                 </p>
-                                <div className="rounded-[2rem] border border-[rgba(var(--color-danger-rgb),0.4)] bg-[rgba(var(--color-danger-rgb),0.06)] px-8 py-6 w-full max-w-xl">
+                                <div className="rounded-[2rem] border border-[rgba(var(--color-danger-rgb),0.45)] bg-[rgba(var(--color-danger-rgb),0.09)] px-8 py-6 w-full max-w-xl">
                                     <div className="flex items-center justify-between">
                                         <span className="text-2xl font-bold text-[var(--color-ink)]">
                                             Motivo

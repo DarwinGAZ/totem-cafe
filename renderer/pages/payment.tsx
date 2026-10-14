@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useCart } from "@/stores/cart";
 import { useTotalPrice } from "@/utils/totalPrice";
 import { orderService } from "@/services/orders.service";
+import { printerService } from "@/services/printer.service";
 
 export default function Pagamento() {
     const router = useRouter();
@@ -20,7 +21,7 @@ export default function Pagamento() {
     ) => {
         setMetodoSelecionado(method);
 
-        await orderService.createOrder({
+        const orderResponse = await orderService.createOrder({
             items: cartItems.map((item) => ({
                 productId: item.product.id,
                 quantity: item.quantity,
@@ -28,8 +29,12 @@ export default function Pagamento() {
             method,
         });
 
+        const orderCode =
+            orderResponse?.data?.code || orderResponse?.data?.data?.code || 0;
+
         if (method === "pix") {
-            router.push("/payment-result?status=approved");
+            await printerService.printReceipt(cartItems, Number(orderCode));
+            router.push(`/payment-result?status=approved&code=${orderCode}`);
             return;
         }
 
@@ -89,7 +94,7 @@ export default function Pagamento() {
                         {cartItems.map((item) => {
                             return (
                                 <div className="flex justify-between items-center text-xl font-medium text-[var(--color-text-muted)]">
-                                    <span>
+                                    <span key={item.product.id}>
                                         {item.quantity} {item.product.name}
                                     </span>
                                     <span>{}</span>
